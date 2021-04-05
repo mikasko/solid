@@ -1,0 +1,30 @@
+@startuml
+
+class Book {
+    - title: string;
+    - author: string;
+    .. Simple Getter ..
+    + get title(): string
+    + get author(): string
+    .. Simple Setter ..
+    + set title(): string
+    + set author(): string
+
+    + searchBook(book: Book): string
+}
+
+note right of Book::searchBook
+    Этот кода нарушает <b>принцип единственной ответственности</b>
+    (single responsibility principle). Поскольку класс делает 2 вещи:
+    1. устанавливает данные, которые относятся к книге и считывает их
+    2. производит поиск книги в библиотеке
+
+    <b>Проблема:</b> если параллельно изменить параметры книги (<i>set title()</i>, <i>set author()</i>)
+    при этом искать книгу по старым параметрам, то возможны проблеммы с поиском
+    - неправильные результаты.
+
+    <b>Решение:</b> вынести функцию <i>searchBook()</i> в отдельный класс, сохраняя ассоциацию
+    на наш класс Book.
+end note
+
+@enduml

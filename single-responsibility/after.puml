@@ -1,0 +1,32 @@
+@startuml
+
+class Library {
+    - Book book;
+
+    Library(Book book)
+    + searchBook(): void
+}
+
+class Book {
+    - title: string;
+    - author: string;
+    .. Simple Getter ..
+    + get title(): string
+    + get author(): string
+    .. Simple Setter ..
+    + set title(): string
+    + set author(): string
+}
+
+note right of Library
+    Этот класс только ответственный за поиск книги в нашем инвенторе.
+end note
+
+note right of Book
+    Этот класс только ответственный за изменения и считывание параметров к книге.
+end note
+
+Library --> Book : ассоциация
+note on link: <i>Library</i> использует наш класс <i>Book</i>
+
+@enduml
