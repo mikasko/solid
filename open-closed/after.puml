@@ -1,0 +1,27 @@
+@startuml
+
+interface BookDiscount {
+
+    getBookDiscount(): number;
+
+}
+
+class DiscountManager {
+    ...
+    + processBiographyDiscount (discount: BookDiscount): void
+}
+
+class BiographyDiscount implements BookDiscount {
+    ...
+    + getBookDiscount(): number
+}
+
+class HistoryDiscount implements BookDiscount {
+    ...
+    + getBookDiscount(): number
+}
+
+DiscountManager --> BookDiscount
+note on link: <i>DiscountManager</i> знает теперь только <i>BookDiscount</i>
+
+@enduml

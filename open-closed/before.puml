@@ -1,0 +1,40 @@
+@startuml
+
+class DiscountManager {
+    ...
+    + applyBiographyDiscount (discount: BiographyDiscount): void
+    + applyHistoryDiscount (discount: BiographyDiscount): void
+}
+
+class BiographyDiscount {
+    ...
+    + getBiographyDiscount(): number
+}
+
+class HistoryDiscount {
+    ...
+    + getBiographyDiscount(): number
+}
+
+DiscountManager --> BiographyDiscount
+DiscountManager --> HistoryDiscount
+note on link #red: <i>DiscountManager</i> использует напрямую наш класс <i>BiographyDiscount</i>, HistoryDiscount
+
+note right of DiscountManager
+    <b>Принцип открытости/закрытости</b> - «программные сущности … должны быть открыты для расширения,
+    но закрыты для модификации».
+
+    <b>Проблема:</b> наш <i>DiscountManager</i> имеет прямую зависимость от класса <i>BiographyDiscount</i>,
+    и если мы захотим добавить новые скидки, например для книг по истории, - нам придется
+    изменять класс <i>DiscountManager</i>, а это как раз и противоречит нашему принципу. А это уже проблемма,
+    потому что мы не знаем как новый код повлияет на существующий код и то что мы написали нужно
+    будет тестировать.
+
+    <b>Решение:</b> создать интерфейс <i>BookDiscount</i> и пусть все наши скидки наследуют от него.
+    Если это сделать то наш класс <i>DiscountManager</i> может работать с новой абстракцией, тоесть
+    с нашим интерфейсом а не с конкретными классами, а это нам дает гибкость и если появится новый
+    дискаунт то мы его просто в новом классе объявим и класс <i>DiscountManager</i> изменять уже не надо
+    будет, и это соответствует нашему принципу.
+end note
+
+@enduml
