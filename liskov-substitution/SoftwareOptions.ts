@@ -1,0 +1,4 @@
+enum SoftwareOptions {
+    AUDIOBOOK,
+    EBOOK
+}

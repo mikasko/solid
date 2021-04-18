@@ -1,0 +1,23 @@
+@startuml
+
+class BookDelivery {
+    + title: string;
+    + customerId: number;
+    ...
+    + getDeliveryLocation (): void
+}
+
+class HardcoverDelivery extends BookDelivery {
+    ...
+    + getDeliveryLocation (): void
+}
+
+class EbookDelivery extends BookDelivery {
+    ...
+    + getDeliveryLocation (): void
+}
+
+note on link: объект суперкласса должен быть заменен объектами его подклассов, не вызывая проблем в приложении
+
+
+@enduml

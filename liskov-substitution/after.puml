@@ -1,0 +1,43 @@
+@startuml
+
+class BookDelivery {
+    + title: string
+    + customerId: int
+}
+
+hide empty members
+enum SoftwareOptions {
+    AUDIOBOOK
+    EBOOK
+}
+
+class OfflineDelivery extends BookDelivery {
+    ...
+    + getDeliveryLocation(): void
+}
+
+abstract class OnlineDelivery extends BookDelivery {
+    ...
+    + getSoftwareOption(): SoftwareOptions
+}
+
+
+class HardcoverDelivery extends OfflineDelivery {
+    ...
+    + getDeliveryLocation(): void
+}
+
+
+OnlineDelivery --> SoftwareOptions
+
+class AudiobookDelivery extends OnlineDelivery {
+    ...
+    + getSoftwareOption(): SoftwareOptions
+}
+
+class EbookDelivery extends OnlineDelivery {
+    ...
+    + getSoftwareOption(): SoftwareOptions
+}
+
+@enduml
