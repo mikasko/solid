@@ -1,0 +1,28 @@
+@startuml
+
+hide empty members
+interface BookAction {
+    + seeReviews (): void
+}
+
+hide empty members
+interface HardcoverAction extends BookAction {
+    + searchForSecondhand (): void
+}
+
+hide empty members
+interface AudioAction extends BookAction {
+    + listenToSample (): void
+}
+
+class HardcoverBook implements HardcoverAction {
+    + seeReviews (): void
+    + searchForSecondhand (): void
+}
+
+class AudioBook implements AudioAction {
+    + seeReviews (): void
+    + listenToSample (): void
+}
+
+@enduml
